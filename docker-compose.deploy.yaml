@@ -22,11 +22,7 @@ services:
       - "traefik.http.routers.good_store.tls.certresolver=myresolver"
       - "traefik.http.routers.good_store.tls.domains[0].main=lenowmain.ru"
       - "traefik.http.routers.good_store.tls.domains[0].sans=good_store.lenowmain.ru"
-      - "traefik.http.routers.good_store.middlewares=good_middleware"
-      # Basic auth
-      - "traefik.http.middlewares.good_middleware.basicauth.usersfile=/userfile"
-    volumes:
-      - ./userfile:/userfile:ro
+      - "traefik.http.routers.good_store.middlewares=good_store_auth"
 
 networks:
   traefik:
