@@ -24,7 +24,9 @@ services:
       - "traefik.http.routers.good_store.tls.domains[0].sans=good_store.lenowmain.ru"
       - "traefik.http.routers.good_store.middlewares=good_middleware"
       # Basic auth
-      - "traefik.http.middlewares.good_middleware.basicauth.usersfile=./userfile"
+      - "traefik.http.middlewares.good_middleware.basicauth.usersfile=/userfile"
+    volumes:
+      - ./userfile:/userfile:ro
 
 networks:
   traefik:
