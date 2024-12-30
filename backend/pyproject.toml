@@ -1,0 +1,21 @@
+[tool.poetry]
+name = "good-history"
+version = "0.1.0"
+description = "Лабораторная работа 3 задание 7"
+authors = ["Новиков Илья <nov.ilucha@yandex.ru>"]
+readme = "README.md"
+
+[tool.poetry.dependencies]
+python = "^3.12"
+fastapi = "^0.115.6"
+uvicorn = "^0.33.0"
+sqlalchemy = "^2.0.36"
+aiosqlite = "^0.20.0"
+
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
+
+[tool.ruff]
+target-version = "py310"

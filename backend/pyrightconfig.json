@@ -1,0 +1,23 @@
+{
+  "exclude": ["**/__pycache__", "**/venv", "**/.venv", "data", "helm"],
+  "defineConstant": {
+    "DEBUG": true
+  },
+  "reportMissingImports": "error",
+  "reportMissingTypeStubs": false,
+  "reportDeprecated": "information",
+  "reportUnknownParameterType": "warning",
+  "reportUnknownVariableType": "warning",
+  "reportUnknownArgumentType": "warning",
+  "reportImplicitStringConcatenation": "none",
+  "reportAny": "information",
+  "reportUnknownMemberType": "information",
+  "reportUnannotatedClassAttribute": "information",
+  "pythonVersion": "3.12",
+  "pythonPlatform": "Linux",
+  "executionEnvironments": [
+    {
+      "root": "./"
+    }
+  ]
+}
