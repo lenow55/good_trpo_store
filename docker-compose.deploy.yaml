@@ -24,6 +24,9 @@ services:
       - "traefik.http.routers.good_store.tls.domains[0].sans=good_store.lenowmain.ru"
       - "traefik.http.routers.good_store.middlewares=good_store_auth"
 
+      # Basic auth trpo
+      - "traefik.http.middlewares.good_store_auth.basicauth.usersfile=/etc/traefik/trpo_userfile"
+
 networks:
   traefik:
     external: true
