@@ -1,0 +1,30 @@
+services:
+  bot:
+    networks:
+      - internal
+
+  backend:
+    networks:
+      - traefik
+      - internal
+    ports: []
+    labels:
+      - "traefik.enable=true"
+      # The Traefik Network
+      - "traefik.docker.network=traefik"
+      - "traefik.http.routers.good_store.rule=Host(`good_store.lenowmain.ru`)"
+      # The 'websecure' entryPoint is basically your HTTPS entrypoint. Check the next code snippet if you are encountering problems only; you probably have a working traefik configuration if this is not your first container you are reverse proxying.
+      - "traefik.http.routers.good_store.entrypoints=websecure"
+      - "traefik.http.routers.good_store.service=user_server"
+      - "traefik.http.services.good_store.loadbalancer.server.port=5000"
+      - "traefik.http.routers.good_store.tls=true"
+      # Replace the string 'letsencrypt' with your own certificate resolver
+      - "traefik.http.routers.good_store.tls.certresolver=myresolver"
+      - "traefik.http.routers.good_store.tls.domains[0].main=lenowmain.ru"
+      - "traefik.http.routers.good_store.tls.domains[0].sans=good_store.lenowmain.ru"
+
+networks:
+  traefik:
+    external: true
+  internal:
+    name: good_network
