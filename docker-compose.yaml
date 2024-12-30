@@ -1,0 +1,29 @@
+services:
+  bot:
+    build:
+      context: ./bot
+      dockerfile: dockerfiles/Dockerfile
+    environment:
+      API_URL: "http://backend:5000"
+      API_TOKEN: ${API_TOKEN}
+
+  backend:
+    build:
+      context: ./backend
+      dockerfile: dockerfiles/sqlite.Dockerfile
+    entrypoint: python
+    command:
+      - -m
+      - uvicorn
+      - src.rest:app
+      - --host=0.0.0.0
+      - --port=5000
+    environment:
+      DATABASE_URL: "sqlite+aiosqlite:////app/prices_vol/prices.db"
+    ports:
+      - 8976:5000
+    volumes:
+      - prices_vol:/app/prices_vol/
+
+volumes:
+  prices_vol:
